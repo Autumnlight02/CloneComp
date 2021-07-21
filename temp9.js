@@ -50,21 +50,6 @@ window.addEventListener("keydown", function (event) {
     }
   }
 
-  function updateInventory() {
-    document.getElementById("wood").textContent = inv.wood;
-    document.getElementById("sticks").textContent = inv.sticks;
-    document.getElementById("fish").textContent = inv.fish;
-    document.getElementById("stone").textContent = inv.stone;
-    document.getElementById("leafes").textContent = inv.leafes;
-    document.getElementById("berry").textContent = inv.berry;
-    if (inv.axt === true) {
-      document.getElementById("axt").style.opacity = "1";
-    }
-    if (inv.spear === true) {
-      document.getElementById("axt").style.opacity = "1";
-    }
-  }
-
   if (event.key === "n" && baseDone === true) {
     document.getElementById("end").click();
     setTimeout(function () {
@@ -114,6 +99,20 @@ document.getElementById("craftAxt").addEventListener("click", function () {
     disablekey();
   }
 });
+  function updateInventory() {
+    document.getElementById("wood").textContent = inv.wood;
+    document.getElementById("sticks").textContent = inv.sticks;
+    document.getElementById("fish").textContent = inv.fish;
+    document.getElementById("stone").textContent = inv.stone;
+    document.getElementById("leafes").textContent = inv.leafes;
+    document.getElementById("berry").textContent = inv.berry;
+    if (inv.axt === true) {
+      document.getElementById("axt").style.opacity = "1";
+    }
+    if (inv.spear === true) {
+      document.getElementById("axt").style.opacity = "1";
+    }
+  }
 
 /*
     const menu = document.getElementById("go").parentElement.parentElement;
