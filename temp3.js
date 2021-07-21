@@ -1,6 +1,7 @@
 window.addEventListener("keydown", function (event) {
   //console.log("yee");
   if (event.key === " ") {
+    event.preventDefault();
     for (let i = 0, l = character.detection.length; i < l; i++) {
       console.log();
       let location = map[character.detection[i].x][character.detection[i].y];
@@ -49,7 +50,8 @@ window.addEventListener("keydown", function (event) {
       inv.spear = true;
       updateInventory();
       game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
-    }
+        } else if (inv.spear === false) {
+alert("not enough resources")} else {alert("you already have it")}
   });
   document.getElementById("craftAxt").addEventListener("click", function () {
     if (inv.stone >= 10 && inv.sticks >= 2 && inv.axt === false) {
@@ -57,7 +59,8 @@ window.addEventListener("keydown", function (event) {
       inv.sticks = inv.sticks - 2;
       inv.axt = true;
       updateInventory();
-    }
+    } else if (inv.axt === false) {
+alert("not enough resources")} else {alert("you already have it")}
   });
 
   function updateInventory() {
