@@ -2,19 +2,100 @@ window.addEventListener("keydown", function (event) {
   //console.log("yee");
   if (event.key === " ") {
     for (let i = 0, l = character.detection.length; i < l; i++) {
+      console.log();
       let location = map[character.detection[i].x][character.detection[i].y];
-      if (character.detection[i].object === "berry") {
-        inv.berry += getRandomInt(4) + 1;
+      switch (character.detection[i].object) {
+        case "berry":
+          inv.berry += getRandomInt(4) + 1;
+          inv.sticks += getRandomInt(2) + 3;
+          inv.leafes += getRandomInt(3) + 1;
+          location[0].ref.parentNode.removeChild(location[0].ref);
+          location.length = 0;
+          updateInventory();
+          break;
+        case "tree":
+          if (inv.axt === true) {
+            inv.wood += getRandomInt(4) + 2;
+            inv.sticks += getRandomInt(6) + 3;
+            inv.leafes += getRandomInt(20) + 10;
+            location[0].ref.parentNode.removeChild(location[0].ref);
+            location.length = 0;
+          }
+          updateInventory();
+          break;
+        case "base":
+          if (inv.wood >= 50 && inv.sticks >= 100 && inv.leafes >= 50 && inv.stone >= 10 && baseDone === false) {
+            inv.wood += getRandomInt(4) + 2;
+            inv.sticks += getRandomInt(6) + 3;
+            inv.leafes += getRandomInt(20) + 10;
+            location[0].ref.children[0].src = "base.png";
+          } else if (baseDone === true) {
+            game.style.filter = "brightness(15%) contrast(90%) saturate(15%)";
+            alert("press n to sleep!");
+          } else {
+            alert("you need more resources!");
+          }
+          updateInventory();
+          break;
       }
       console.log(inv);
-      location[0].ref.parentNode.removeChild(location[0].ref);
-      location.length = 0;
     }
   }
+
+  document.getElementById("craftSpear").addEventListener("click", function () {
+    if (inv.stone >= 2 && inv.sticks >= 4 && inv.spear === false) {
+      inv.stone = inv.stone - 2;
+      inv.sticks = inv.sticks - 4;
+      inv.spear = true;
+      updateInventory();
+      game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
+    }
+  });
+  document.getElementById("craftAxt").addEventListener("click", function () {
+    if (inv.stone >= 10 && inv.sticks >= 2 && inv.axt === false) {
+      inv.stone = inv.stone - 10;
+      inv.sticks = inv.sticks - 2;
+      inv.axt = true;
+      updateInventory();
+    }
+  });
+
+  function updateInventory() {
+    document.getElementById("wood").textContent = inv.wood;
+    document.getElementById("sticks").textContent = inv.sticks;
+    document.getElementById("fish").textContent = inv.fish;
+    document.getElementById("stone").textContent = inv.stone;
+    document.getElementById("leafes").textContent = inv.leafes;
+    document.getElementById("berry").textContent = inv.berry;
+    if (inv.axt === true) {
+      document.getElementById("axt").style.opacity = "1";
+    }
+    if (inv.spear === true) {
+      document.getElementById("axt").style.opacity = "1";
+    }
+  }
+
+  if (event.key === "n" && baseDone === true) {
+    document.getElementById("end").click();
+    setTimeout(function () {
+      window.location.href = "day2.html";
+    });
+  }
+
   console.log("keydown");
   interface.keydown[event.key] = true;
   if (false) console.log("ye");
 });
+
+/*
+const menu = document.getElementById("go").parentElement.parentElement;
+menu.addEventListener("click", function () {
+  setTimeout(function () {
+    menu.style.display = "none";
+  }, 500);
+  menu.style.opacity = "0";
+});
+*/
 
 Array.prototype.remove = function (index) {
   this.splice(index, 1);
@@ -22,11 +103,13 @@ Array.prototype.remove = function (index) {
 
 const berryTemplate = document.getElementById("berry");
 
+let baseDone = false;
+
 let inv = {
   wood: 0,
   sticks: 0,
   fish: 0,
-  stone: 0,
+  stone: 25,
   leafes: 0,
   berry: 0,
   spear: false,
@@ -83,7 +166,7 @@ function mapInit() {
           break;
         case "berry":
           let berry = berryTemplate.cloneNode("true");
-          let variants = ["https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f8088578cfb069270e25d2_berry1.png", "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png"];
+          let variants = ["berry1.png", "berry2.png"];
           berry.children[0].src = variants[getRandomInt(2)];
 
           if (getRandomInt(2) === 1) {
@@ -115,6 +198,7 @@ function mapInit() {
 
           berry.setAttribute("coords", [mapObj[i].x] + " " + [mapObj[i].y]); // easier to debug
           berry.style.transform = transform;
+          berry.removeAttribute("loading");
           // end
 
           game.appendChild(berry);
@@ -122,12 +206,12 @@ function mapInit() {
         case "tree":
           let tree = document.getElementById("tree").cloneNode("true");
           let variantList = {
-            tree1: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886866b4f08cce8ca86_tree1.png",
-            tree2: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808868321193b4080090d_tree2.png",
-            tree3: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808861794b0cbd950c0a9_tree3.png",
-            tree4: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886bf063428b47b5692_tree4.png",
+            tree1: "tree1.png",
+            tree2: "tree2.png",
+            tree3: "tree3.png",
+            tree4: "tree4.png",
           };
-          tree.src = variantList[mapObj[i].variant];
+          tree.children[0].src = variantList[mapObj[i].variant];
 
           tree.style.top = (mapObj[i].y + 1) * 32 + 8 + getRandomInt(17) + "px";
           tree.style.left = mapObj[i].x * 32 + 8 + getRandomInt(17) + "px";
@@ -146,11 +230,19 @@ function mapInit() {
               mirrow: true,
               object: mapObj[i].object,
               ref: tree,
-              test: "test",
+              x: mapObj[i].x,
+              y: mapObj[i].y,
             });
           } else {
-            map[mapObj[i].x][mapObj[i].y].push({ path: mapObj[i].path, object: mapObj[i].object, ref: tree });
+            map[mapObj[i].x][mapObj[i].y].push({
+              path: mapObj[i].path,
+              object: mapObj[i].object,
+              ref: tree,
+              x: mapObj[i].x,
+              y: mapObj[i].y,
+            });
           }
+          tree.removeAttribute("loading");
 
           tree.setAttribute("coords", [mapObj[i].x] + " " + [mapObj[i].y]); // easier to debug
           tree.style.transform = transform;
@@ -161,6 +253,33 @@ function mapInit() {
           map[mapObj[i].x + 1][mapObj[i].y + 1].push({ path: mapObj[i].path });
           map[mapObj[i].x][mapObj[i].y + 1].push({ path: mapObj[i].path });
 */
+          break;
+        case "base":
+          transform = "translate(-50%, -80%)";
+          let base = document.getElementById("base").cloneNode("true");
+          base.children[0].src =
+            "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f822a46540bacd85593878_Group%20344.png";
+
+          map[mapObj[i].x][mapObj[i].y].push({
+            path: mapObj[i].path,
+            object: mapObj[i].object,
+            ref: base,
+            x: mapObj[i].x,
+            y: mapObj[i].y,
+          });
+
+          base.style.top = (mapObj[i].y + 1) * 32 + "px";
+          base.style.left = mapObj[i].x * 32 + "px";
+
+          base.style.zIndex = [mapObj[i].y];
+
+          base.setAttribute("coords", [mapObj[i].x] + " " + [mapObj[i].y]); // easier to debug
+          base.style.transform = transform;
+          // end
+          console.log(base);
+          game.appendChild(base);
+
+          base.removeAttribute("loading");
           break;
       }
     }
@@ -664,7 +783,8 @@ mapObj = [
   //TREE4
   { x: 53, y: 17, path: "blocked", object: "tree", variant: "tree4" },
 
-  { x: 1, y: 1, path: "blocked", object: "block" },
+  { x: 112, y: 21, path: "blocked", object: "base" },
+
   { x: 1, y: 1, path: "blocked", object: "block" },
 ];
 
@@ -714,33 +834,33 @@ let character = {
     if (interface.keydown["d"] === true) {
       newX = character.x + config.movementspeed; // right
       if (character.tick === 0) {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808866bf7c60b66892cc0_r1.png";
+        character.dom.src = "r1.png";
       } else {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808864a573c6872217306_r2.png";
+        character.dom.src = "r2.png";
       }
     }
     if (interface.keydown["a"] === true) {
       newX = character.x - config.movementspeed; // left
       if (character.tick === 0) {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808866e86bfc40132a668_l1.png";
+        character.dom.src = "l1.png";
       } else {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808861c1ffc5f7679be8a_l2.png";
+        character.dom.src = "l2.png";
       }
     }
     if (interface.keydown["w"] === true) {
       newY = character.y - config.movementspeed; // up
       if (character.tick === 0) {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808866540ba1577588f24_u1.png";
+        character.dom.src = "u1.png";
       } else {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886832119d2a780090c_u2.png";
+        character.dom.src = "u2.png";
       }
     }
     if (interface.keydown["s"] === true) {
       newY = character.y + config.movementspeed; // down
       if (character.tick === 0) {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886399f645d3c4eafef_d1.png";
+        character.dom.src = "d1.png";
       } else {
-        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808862db15049584d58b5_d2.png";
+        character.dom.src = "d2.png";
       }
     }
     if (
@@ -749,7 +869,7 @@ let character = {
       interface.keydown["w"] === false &&
       interface.keydown["s"] === false
     ) {
-      character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886a28e6260440eb0c7_idle.png";
+      character.dom.src = "idle.png";
     }
     if (tick === 29) {
       console.log(map[parseInt(newX / 32)][parseInt(newY / 32)][0]);
@@ -819,6 +939,11 @@ let character = {
           let select = collect.cloneNode(true);
           if (this.detection[i].mirrow === true) {
             select.style.transform = "rotate3d(0, 1, 0, 180deg)";
+          }
+          if (this.detection[i].object === "tree") {
+            this.detection[i].ref.appendChild(select);
+            console.log("tree");
+            continue;
           }
           this.detection[i].ref.appendChild(select);
         }
