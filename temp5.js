@@ -31,6 +31,7 @@ window.addEventListener("keydown", function (event) {
             inv.leafes += getRandomInt(20) + 10;
             location[0].ref.children[0].src =
               "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f828a34998cfc61d84c88e_base.png";
+            alert("press n to sleep!");
           } else if (baseDone === true) {
             game.style.filter = "brightness(15%) contrast(90%) saturate(15%)";
             alert("press n to sleep!");
@@ -98,14 +99,14 @@ document.getElementById("craftAxt").addEventListener("click", function () {
 });
 
 /*
-  const menu = document.getElementById("go").parentElement.parentElement;
-  menu.addEventListener("click", function () {
-    setTimeout(function () {
-      menu.style.display = "none";
-    }, 500);
-    menu.style.opacity = "0";
-  });
-  */
+    const menu = document.getElementById("go").parentElement.parentElement;
+    menu.addEventListener("click", function () {
+      setTimeout(function () {
+        menu.style.display = "none";
+      }, 500);
+      menu.style.opacity = "0";
+    });
+    */
 
 Array.prototype.remove = function (index) {
   this.splice(index, 1);
@@ -263,9 +264,9 @@ function mapInit() {
 
           game.appendChild(tree);
           /* map[mapObj[i].x + 1][mapObj[i].y].push({ path: mapObj[i].path });
-            map[mapObj[i].x + 1][mapObj[i].y + 1].push({ path: mapObj[i].path });
-            map[mapObj[i].x][mapObj[i].y + 1].push({ path: mapObj[i].path });
-  */
+              map[mapObj[i].x + 1][mapObj[i].y + 1].push({ path: mapObj[i].path });
+              map[mapObj[i].x][mapObj[i].y + 1].push({ path: mapObj[i].path });
+    */
           break;
         case "base":
           transform = "translate(-50%, -80%)";
@@ -887,10 +888,10 @@ let character = {
       console.log(map[parseInt(newX / 32)][parseInt(newY / 32)][0]);
     }
     /*
-      if (map[parseInt(newX / 32)][parseInt(newY / 32)][0] === undefined) {
-        character.y = newY;
-        character.x = newX;
-      }*/
+        if (map[parseInt(newX / 32)][parseInt(newY / 32)][0] === undefined) {
+          character.y = newY;
+          character.x = newX;
+        }*/
     if (map[parseInt(newX / 32)][parseInt(character.y / 32)][0] === undefined) {
       character.x = newX;
     } else {
@@ -919,8 +920,8 @@ let character = {
         }
       }
       /*
-        elem = document.getElementById("test").children[0];
-        elem.parentNode.removeChild(elem);*/
+          elem = document.getElementById("test").children[0];
+          elem.parentNode.removeChild(elem);*/
 
       this.tempx = parseInt(character.x / 32);
       this.tempy = parseInt(character.y / 32);
