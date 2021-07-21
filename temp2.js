@@ -166,6 +166,7 @@ function mapInit() {
           break;
         case "berry":
           let berry = berryTemplate.cloneNode("true");
+        berry.children[0].removeAttribute("loading");
           let variants = ["https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png", "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png"];
           berry.children[0].src = variants[getRandomInt(2)];
 
@@ -204,6 +205,7 @@ function mapInit() {
           break;
         case "tree":
           let tree = document.getElementById("tree").cloneNode("true");
+tree.children[0].removeAttribute("loading");
           let variantList = {
             tree1: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886866b4f08cce8ca86_tree1.png",
             tree2: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808868321193b4080090d_tree2.png",
@@ -255,6 +257,7 @@ function mapInit() {
         case "base":
           transform = "translate(-50%, -80%)";
           let base = document.getElementById("base").cloneNode("true");
+base.children[0].removeAttribute("loading");
           base.children[0].src =
             "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f822a46540bacd85593878_Group%20344.png";
 
