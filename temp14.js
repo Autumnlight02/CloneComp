@@ -985,7 +985,7 @@ let character = {
       //   console.log(this.detection);
     }
     character.dom.style.zIndex = [parseInt(character.y / 32) + 1];
-    document.getElementById("game").scrollLeft = character.x;
+    document.getElementById("game").scrollLeft = character.x - window.innerWidth / 2;
     character.dom.style.left = character.x - 16 + "px";
     character.dom.style.top = character.y - 16 + "px";
   },
