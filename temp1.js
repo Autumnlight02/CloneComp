@@ -28,7 +28,7 @@ window.addEventListener("keydown", function (event) {
             inv.wood += getRandomInt(4) + 2;
             inv.sticks += getRandomInt(6) + 3;
             inv.leafes += getRandomInt(20) + 10;
-            location[0].ref.children[0].src = "base.png";
+            location[0].ref.children[0].src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f828a34998cfc61d84c88e_base.png";
           } else if (baseDone === true) {
             game.style.filter = "brightness(15%) contrast(90%) saturate(15%)";
             alert("press n to sleep!");
@@ -166,7 +166,7 @@ function mapInit() {
           break;
         case "berry":
           let berry = berryTemplate.cloneNode("true");
-          let variants = ["berry1.png", "berry2.png"];
+          let variants = ["https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png", "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png"];
           berry.children[0].src = variants[getRandomInt(2)];
 
           if (getRandomInt(2) === 1) {
@@ -205,10 +205,10 @@ function mapInit() {
         case "tree":
           let tree = document.getElementById("tree").cloneNode("true");
           let variantList = {
-            tree1: "tree1.png",
-            tree2: "tree2.png",
-            tree3: "tree3.png",
-            tree4: "tree4.png",
+            tree1: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886866b4f08cce8ca86_tree1.png",
+            tree2: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808868321193b4080090d_tree2.png",
+            tree3: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808861794b0cbd950c0a9_tree3.png",
+            tree4: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886bf063428b47b5692_tree4.png",
           };
           tree.children[0].src = variantList[mapObj[i].variant];
 
@@ -830,33 +830,33 @@ let character = {
     if (interface.keydown["d"] === true) {
       newX = character.x + config.movementspeed; // right
       if (character.tick === 0) {
-        character.dom.src = "r1.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808866bf7c60b66892cc0_r1.png";
       } else {
-        character.dom.src = "r2.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808864a573c6872217306_r2.png";
       }
     }
     if (interface.keydown["a"] === true) {
       newX = character.x - config.movementspeed; // left
       if (character.tick === 0) {
-        character.dom.src = "l1.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808866e86bfc40132a668_l1.png";
       } else {
-        character.dom.src = "l2.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808861c1ffc5f7679be8a_l2.png";
       }
     }
     if (interface.keydown["w"] === true) {
       newY = character.y - config.movementspeed; // up
       if (character.tick === 0) {
-        character.dom.src = "u1.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808866540ba1577588f24_u1.png";
       } else {
-        character.dom.src = "u2.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886832119d2a780090c_u2.png";
       }
     }
     if (interface.keydown["s"] === true) {
       newY = character.y + config.movementspeed; // down
       if (character.tick === 0) {
-        character.dom.src = "d1.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886399f645d3c4eafef_d1.png";
       } else {
-        character.dom.src = "d2.png";
+        character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808862db15049584d58b5_d2.png";
       }
     }
     if (
@@ -865,7 +865,7 @@ let character = {
       interface.keydown["w"] === false &&
       interface.keydown["s"] === false
     ) {
-      character.dom.src = "idle.png";
+      character.dom.src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886a28e6260440eb0c7_idle.png";
     }
     if (tick === 29) {
       console.log(map[parseInt(newX / 32)][parseInt(newY / 32)][0]);
