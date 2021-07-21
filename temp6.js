@@ -29,6 +29,7 @@ window.addEventListener("keydown", function (event) {
             inv.wood += getRandomInt(4) + 2;
             inv.sticks += getRandomInt(6) + 3;
             inv.leafes += getRandomInt(20) + 10;
+            location[0].ref.children[0].style.transform = "translate(-50%, -40%)";
             location[0].ref.children[0].src =
               "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f828a34998cfc61d84c88e_base.png";
             alert("press n to sleep!");
