@@ -29,7 +29,8 @@ window.addEventListener("keydown", function (event) {
             inv.wood += getRandomInt(4) + 2;
             inv.sticks += getRandomInt(6) + 3;
             inv.leafes += getRandomInt(20) + 10;
-            location[0].ref.children[0].src = "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f828a34998cfc61d84c88e_base.png";
+            location[0].ref.children[0].src =
+              "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f828a34998cfc61d84c88e_base.png";
           } else if (baseDone === true) {
             game.style.filter = "brightness(15%) contrast(90%) saturate(15%)";
             alert("press n to sleep!");
@@ -42,26 +43,6 @@ window.addEventListener("keydown", function (event) {
       console.log(inv);
     }
   }
-
-  document.getElementById("craftSpear").addEventListener("click", function () {
-    if (inv.stone >= 2 && inv.sticks >= 4 && inv.spear === false) {
-      inv.stone = inv.stone - 2;
-      inv.sticks = inv.sticks - 4;
-      inv.spear = true;
-      updateInventory();
-      game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
-        } else if (inv.spear === false) {
-alert("not enough resources")} else {alert("you already have it")}
-  });
-  document.getElementById("craftAxt").addEventListener("click", function () {
-    if (inv.stone >= 10 && inv.sticks >= 2 && inv.axt === false) {
-      inv.stone = inv.stone - 10;
-      inv.sticks = inv.sticks - 2;
-      inv.axt = true;
-      updateInventory();
-    } else if (inv.axt === false) {
-alert("not enough resources")} else {alert("you already have it")}
-  });
 
   function updateInventory() {
     document.getElementById("wood").textContent = inv.wood;
@@ -90,15 +71,41 @@ alert("not enough resources")} else {alert("you already have it")}
   if (false) console.log("ye");
 });
 
-/*
-const menu = document.getElementById("go").parentElement.parentElement;
-menu.addEventListener("click", function () {
-  setTimeout(function () {
-    menu.style.display = "none";
-  }, 500);
-  menu.style.opacity = "0";
+document.getElementById("craftSpear").addEventListener("click", function () {
+  if (inv.stone >= 2 && inv.sticks >= 4 && inv.spear === false) {
+    inv.stone = inv.stone - 2;
+    inv.sticks = inv.sticks - 4;
+    inv.spear = true;
+    updateInventory();
+    game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
+  } else if (inv.spear === false) {
+    alert("not enough resources");
+  } else {
+    alert("you already have it");
+  }
 });
-*/
+document.getElementById("craftAxt").addEventListener("click", function () {
+  if (inv.stone >= 10 && inv.sticks >= 2 && inv.axt === false) {
+    inv.stone = inv.stone - 10;
+    inv.sticks = inv.sticks - 2;
+    inv.axt = true;
+    updateInventory();
+  } else if (inv.axt === false) {
+    alert("not enough resources");
+  } else {
+    alert("you already have it");
+  }
+});
+
+/*
+  const menu = document.getElementById("go").parentElement.parentElement;
+  menu.addEventListener("click", function () {
+    setTimeout(function () {
+      menu.style.display = "none";
+    }, 500);
+    menu.style.opacity = "0";
+  });
+  */
 
 Array.prototype.remove = function (index) {
   this.splice(index, 1);
@@ -169,8 +176,11 @@ function mapInit() {
           break;
         case "berry":
           let berry = berryTemplate.cloneNode("true");
-        berry.children[0].removeAttribute("loading");
-          let variants = ["https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png", "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png"];
+          berry.children[0].removeAttribute("loading");
+          let variants = [
+            "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png",
+            "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png",
+          ];
           berry.children[0].src = variants[getRandomInt(2)];
 
           if (getRandomInt(2) === 1) {
@@ -208,7 +218,7 @@ function mapInit() {
           break;
         case "tree":
           let tree = document.getElementById("tree").cloneNode("true");
-tree.children[0].removeAttribute("loading");
+          tree.children[0].removeAttribute("loading");
           let variantList = {
             tree1: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886866b4f08cce8ca86_tree1.png",
             tree2: "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f808868321193b4080090d_tree2.png",
@@ -253,14 +263,14 @@ tree.children[0].removeAttribute("loading");
 
           game.appendChild(tree);
           /* map[mapObj[i].x + 1][mapObj[i].y].push({ path: mapObj[i].path });
-          map[mapObj[i].x + 1][mapObj[i].y + 1].push({ path: mapObj[i].path });
-          map[mapObj[i].x][mapObj[i].y + 1].push({ path: mapObj[i].path });
-*/
+            map[mapObj[i].x + 1][mapObj[i].y + 1].push({ path: mapObj[i].path });
+            map[mapObj[i].x][mapObj[i].y + 1].push({ path: mapObj[i].path });
+  */
           break;
         case "base":
           transform = "translate(-50%, -80%)";
           let base = document.getElementById("base").cloneNode("true");
-base.children[0].removeAttribute("loading");
+          base.children[0].removeAttribute("loading");
           base.children[0].src =
             "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f822a46540bacd85593878_Group%20344.png";
 
@@ -877,10 +887,10 @@ let character = {
       console.log(map[parseInt(newX / 32)][parseInt(newY / 32)][0]);
     }
     /*
-    if (map[parseInt(newX / 32)][parseInt(newY / 32)][0] === undefined) {
-      character.y = newY;
-      character.x = newX;
-    }*/
+      if (map[parseInt(newX / 32)][parseInt(newY / 32)][0] === undefined) {
+        character.y = newY;
+        character.x = newX;
+      }*/
     if (map[parseInt(newX / 32)][parseInt(character.y / 32)][0] === undefined) {
       character.x = newX;
     } else {
@@ -909,8 +919,8 @@ let character = {
         }
       }
       /*
-      elem = document.getElementById("test").children[0];
-      elem.parentNode.removeChild(elem);*/
+        elem = document.getElementById("test").children[0];
+        elem.parentNode.removeChild(elem);*/
 
       this.tempx = parseInt(character.x / 32);
       this.tempy = parseInt(character.y / 32);
