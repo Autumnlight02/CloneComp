@@ -61,7 +61,7 @@ window.addEventListener("keydown", function (event) {
       document.getElementById("axt").style.opacity = "1";
     }
     if (inv.spear === true) {
-      document.getElementById("axt").style.opacity = "1";
+      document.getElementById("spear").style.opacity = "1";
     }
   }
 
@@ -91,6 +91,7 @@ document.getElementById("craftSpear").addEventListener("click", function () {
     inv.sticks = inv.sticks - 4;
     inv.spear = true;
     updateInventory();
+document.getElementById("spear").style.opacity = "1";
     game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
   } else if (inv.spear === false) {
     alert("not enough resources");
@@ -106,6 +107,7 @@ document.getElementById("craftAxt").addEventListener("click", function () {
     inv.sticks = inv.sticks - 2;
     inv.axt = true;
     updateInventory();
+document.getElementById("axt").style.opacity = "1";
   } else if (inv.axt === false) {
     alert("not enough resources");
     disablekey();
