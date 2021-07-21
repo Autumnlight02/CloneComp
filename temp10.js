@@ -50,6 +50,21 @@ window.addEventListener("keydown", function (event) {
     }
   }
 
+  function updateInventory() {
+    document.getElementById("wood").textContent = inv.wood;
+    document.getElementById("sticks").textContent = inv.sticks;
+    document.getElementById("fish").textContent = inv.fish;
+    document.getElementById("stone").textContent = inv.stone;
+    document.getElementById("leafes").textContent = inv.leafes;
+    document.getElementById("berry").textContent = inv.berry;
+    if (inv.axt === true) {
+      document.getElementById("axt").style.opacity = "1";
+    }
+    if (inv.spear === true) {
+      document.getElementById("axt").style.opacity = "1";
+    }
+  }
+
   if (event.key === "n" && baseDone === true) {
     document.getElementById("end").click();
     setTimeout(function () {
@@ -99,20 +114,6 @@ document.getElementById("craftAxt").addEventListener("click", function () {
     disablekey();
   }
 });
-  function updateInventory() {
-    document.getElementById("wood").textContent = inv.wood;
-    document.getElementById("sticks").textContent = inv.sticks;
-    document.getElementById("fish").textContent = inv.fish;
-    document.getElementById("stone").textContent = inv.stone;
-    document.getElementById("leafes").textContent = inv.leafes;
-    document.getElementById("berry").textContent = inv.berry;
-    if (inv.axt === true) {
-      document.getElementById("axt").style.opacity = "1";
-    }
-    if (inv.spear === true) {
-      document.getElementById("axt").style.opacity = "1";
-    }
-  }
 
 /*
     const menu = document.getElementById("go").parentElement.parentElement;
@@ -193,7 +194,6 @@ function mapInit() {
           break;
         case "berry":
           let berry = berryTemplate.cloneNode("true");
-          berry.children[0].removeAttribute("loading");
           let variants = [
             "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png",
             "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f80886cc72cb80421f972a_berry2.png",
