@@ -91,7 +91,7 @@ document.getElementById("craftSpear").addEventListener("click", function () {
     inv.sticks = inv.sticks - 4;
     inv.spear = true;
     updateInventory();
-document.getElementById("spear").style.opacity = "1";
+    document.getElementById("spear").style.opacity = "1";
     game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
   } else if (inv.spear === false) {
     alert("not enough resources");
@@ -107,7 +107,7 @@ document.getElementById("craftAxt").addEventListener("click", function () {
     inv.sticks = inv.sticks - 2;
     inv.axt = true;
     updateInventory();
-document.getElementById("axt").style.opacity = "1";
+    document.getElementById("axt").style.opacity = "1";
   } else if (inv.axt === false) {
     alert("not enough resources");
     disablekey();
@@ -985,7 +985,7 @@ let character = {
       //   console.log(this.detection);
     }
     character.dom.style.zIndex = [parseInt(character.y / 32) + 1];
-
+    document.getElementById("game").scrollLeft = character.x;
     character.dom.style.left = character.x - 16 + "px";
     character.dom.style.top = character.y - 16 + "px";
   },
