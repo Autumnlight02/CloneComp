@@ -51,12 +51,12 @@ window.addEventListener("keydown", function (event) {
   }
 
   function updateInventory() {
-    document.getElementById("wood").textContent = inv.wood;
-    document.getElementById("sticks").textContent = inv.sticks;
-    document.getElementById("fish").textContent = inv.fish;
-    document.getElementById("stone").textContent = inv.stone;
-    document.getElementById("leafes").textContent = inv.leafes;
-    document.getElementById("berry").textContent = inv.berry;
+    document.getElementById("woodcount").textContent = inv.wood;
+    document.getElementById("stickscount").textContent = inv.sticks;
+    document.getElementById("fishcount").textContent = inv.fish;
+    document.getElementById("stonecount").textContent = inv.stone;
+    document.getElementById("leafescount").textContent = inv.leafes;
+    document.getElementById("berrycount").textContent = inv.berry;
     if (inv.axt === true) {
       document.getElementById("axt").style.opacity = "1";
     }
