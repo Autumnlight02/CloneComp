@@ -33,11 +33,15 @@ window.addEventListener("keydown", function (event) {
             location[0].ref.children[0].src =
               "https://uploads-ssl.webflow.com/60f6f342d4804fc777c21408/60f828a34998cfc61d84c88e_base.png";
             alert("press n to sleep!");
+            disablekey();
+            baseDone = true;
           } else if (baseDone === true) {
             game.style.filter = "brightness(15%) contrast(90%) saturate(15%)";
             alert("press n to sleep!");
+            disablekey();
           } else {
             alert("you need more resources!");
+            disablekey();
           }
           updateInventory();
           break;
@@ -73,6 +77,14 @@ window.addEventListener("keydown", function (event) {
   if (false) console.log("ye");
 });
 
+function disablekey() {
+  interface.keydown["f"] = false;
+  interface.keydown["d"] = false;
+  interface.keydown["s"] = false;
+  interface.keydown["a"] = false;
+  interface.keydown[" "] = false;
+}
+
 document.getElementById("craftSpear").addEventListener("click", function () {
   if (inv.stone >= 2 && inv.sticks >= 4 && inv.spear === false) {
     inv.stone = inv.stone - 2;
@@ -82,8 +94,10 @@ document.getElementById("craftSpear").addEventListener("click", function () {
     game.style.filter = "brightness(55%) contrast(95%) saturate(55%)";
   } else if (inv.spear === false) {
     alert("not enough resources");
+    disablekey();
   } else {
     alert("you already have it");
+    disablekey();
   }
 });
 document.getElementById("craftAxt").addEventListener("click", function () {
@@ -94,8 +108,10 @@ document.getElementById("craftAxt").addEventListener("click", function () {
     updateInventory();
   } else if (inv.axt === false) {
     alert("not enough resources");
+    disablekey();
   } else {
     alert("you already have it");
+    disablekey();
   }
 });
 
