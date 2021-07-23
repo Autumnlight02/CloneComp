@@ -236,7 +236,7 @@ function danceTick() {
 }
 
 document.getElementById("start").addEventListener("click", function () {
-  game.style.display = "block";
+  game.style.display = "flex";
   start.style.display = "none";
   score = 0;
   keyMoves = setInterval(danceTick, keyTime);
