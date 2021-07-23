@@ -179,7 +179,7 @@ function danceTick() {
 
   if (time >= 155) {
     clearInterval(keyMoves);
-    if (score >= 6000) {
+    if (score >= 4000) {
       setTimeout(function () {
         document.getElementById("winScreen").style.display = "block";
       }, 4000);
