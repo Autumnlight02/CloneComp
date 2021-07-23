@@ -235,7 +235,7 @@ function danceTick() {
   }
 }
 
-document.getElementById("start").addEventListener("mousedown", function () {
+document.getElementById("start").addEventListener("click", function () {
   game.style.display = "block";
   start.style.display = "none";
   score = 0;
@@ -244,10 +244,10 @@ document.getElementById("start").addEventListener("mousedown", function () {
   audio.volume = 0.1;
 });
 
-document.getElementById("looseScreen").addEventListener("mousedown", function () {
+document.getElementById("looseScreen").addEventListener("click", function () {
   location.reload();
 });
 winScreen;
-document.getElementById("winScreen").addEventListener("mousedown", function () {
-    document.location.href = "/endscene.html"
+document.getElementById("winScreen").addEventListener("click", function () {
+  document.location.href = "/endscene.html";
 });
