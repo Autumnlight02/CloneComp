@@ -249,5 +249,5 @@ document.getElementById("looseScreen").addEventListener("click", function () {
 });
 winScreen;
 document.getElementById("winScreen").addEventListener("click", function () {
-  document.location.href = "/endscene.html";
+  document.location.href = "/endscene";
 });
